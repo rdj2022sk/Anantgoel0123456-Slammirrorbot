@@ -18,3 +18,16 @@ jobs:
           region: "eu"
         env:
           HD_CONFIG_FILE_URL: ${{secrets.CONFIG_FILE_URL}}
+          STOP_DUPLICATE: ${{secrets.STOP_DUPLICATE}}
+          VIEW_LINK: ${{secrets.VIEW_LINK}}
+          INDEX_URL: ${{secrets.INDEX_URL}}
+          BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+          GDRIVE_FOLDER_ID: ${{secrets.GDRIVE_FOLDER_ID}}
+          OWNER_ID: ${{secrets.OWNER_ID}}
+          DOWNLOAD_DIR: ${{secrets.DOWNLOAD_DIR}}
+          DOWNLOAD_STATUS_UPDATE_INTERVAL: ${{secrets.DOWNLOAD_STATUS_UPDATE_INTERVAL}}
+          AUTO_DELETE_MESSAGE_DURATION: ${{secrets.AUTO_DELETE_MASSAGE_DURATION}}
+          IS_TEAM_DRIVE: ${{secrets.IS_TEAM_DRIVE}}
+          TELEGRAM_API: ${{secrets.TELEGRAM_API}}
+          TELEGRAM_HASH: ${{secrets.TELEGRAM_HASH}}
+          IMAGE_URL: ${{secrets.IMAGE_URL}}
