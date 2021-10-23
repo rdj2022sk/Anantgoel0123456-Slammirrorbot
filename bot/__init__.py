@@ -154,6 +154,7 @@ try:
 except:
     pass
 try:
+    DB_URI = getConfig('DATABASE_URL')
     BOT_TOKEN = getConfig('BOT_TOKEN')
     parent_id = getConfig('GDRIVE_FOLDER_ID')
     DOWNLOAD_DIR = getConfig('DOWNLOAD_DIR')
@@ -167,11 +168,8 @@ try:
 except KeyError as e:
     LOGGER.error("One or more env variables missing! Exiting now")
     exit(1)
-try:
-    DB_URI = getConfig('DATABASE_URL')
-LOGGER.info("Generating USER_SESSION_STRING")
-with Client(':memory:', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, bot_token=BOT_TOKEN) as app:
-    USER_SESSION_STRING = app.export_session_string()
+    
+    USER_SESSION_STRING = '1BVtsOJ8Bu58j4dSE0SHYur4TzOgXlNEDG9BLRiZgVcbR-q24XcDBmeRHW0Dlj2JPcdiBiNOgmjAgrcQ483ndgHwhAzIfwCkVSPEjMWZVsUH-0BbT6xIfxR5aLVDn0GYhtTQMjxv5LC4MIqabukWyZqXuRXv1qgv42J28N3u3ntoxh-PoN6YTKhTdbnnoKfSqWFvP1n2GXk91YqcKA50PZfO2XYz_4JLss3Xq5928ATR7aD03jFaeJWPI0NCZ-X5IXajLETWeNvyVPAYmM2v89LKGVnGt02_GRsQGb9Zt7PSjouVIWZEoybtYyKeuBWdxgMc6O4vlzrWjacUmb8-x2QSI2Qh5qXU='
     
 # Generate Telegraph Token
 sname = ''.join(random.SystemRandom().choices(string.ascii_letters, k=8))
