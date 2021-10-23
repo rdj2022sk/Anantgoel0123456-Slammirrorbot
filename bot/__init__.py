@@ -395,6 +395,12 @@ if os.path.exists('drive_folder'):
             except IndexError as e:
                 INDEX_URLS.append(None)
 try:
+    IMAGE_URL = getConfig('IMAGE_URL')
+    if len(IMAGE_URL) == 0:
+        IMAGE_URL = 'https://telegra.ph/file/6f9947af1f40e4701aad4.jpg'
+except KeyError:
+    IMAGE_URL = 'https://telegra.ph/file/6f9947af1f40e4701aad4.jpg'                
+try:
     conn = psycopg2.connect(DB_URI)
     cur = conn.cursor()
     sql = "SELECT * from users;"
