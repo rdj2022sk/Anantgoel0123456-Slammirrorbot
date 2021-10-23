@@ -162,26 +162,6 @@ try:
 except KeyError:
     DB_URI = None
 if DB_URI is not None:
-try:
-        conn = psycopg2.connect(DB_URI)
-        cur = conn.cursor()
-        sql = "SELECT * from users;"
-        cur.execute(sql)
-        rows = cur.fetchall()  #returns a list ==> (uid, sudo)
-        for row in rows:
-            AUTHORIZED_CHATS.add(row[0])
-            if row[1]:
-                SUDO_USERS.add(row[0])
-    except Error as e:
-        if 'relation "users" does not exist' in str(e):
-            mktable()
-        else:
-            LOGGER.error(e)
-            exit(1)
-    finally:
-        cur.close()
-        conn.close()
-
 LOGGER.info("Generating USER_SESSION_STRING")
 app = Client('Slam', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, bot_token=BOT_TOKEN)
 
@@ -414,6 +394,25 @@ if os.path.exists('drive_folder'):
                 INDEX_URLS.append(temp[2])
             except IndexError as e:
                 INDEX_URLS.append(None)
+try:
+    conn = psycopg2.connect(DB_URI)
+    cur = conn.cursor()
+    sql = "SELECT * from users;"
+    cur.execute(sql)
+    rows = cur.fetchall()  #returns a list ==> (uid, sudo)
+    for row in rows:
+        AUTHORIZED_CHATS.add(row[0])
+        if row[1]:
+            SUDO_USERS.add(row[0])
+except Error as e:
+    if 'relation "users" does not exist' in str(e):
+        mktable()
+    else:
+        LOGGER.error(e)
+        exit(1)
+finally:
+    cur.close()
+    conn.close()                    
 
 updater = tg.Updater(token=BOT_TOKEN)
 bot = updater.bot
