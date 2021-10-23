@@ -20,8 +20,9 @@ from bot.helper.telegram_helper import button_build
 from .modules import authorize, list, cancel_mirror, mirror_status, mirror, clone, watch, shell, eval, torrent_search, delete, speedtest, count, leech_settings
 
 
+
 def stats(update, context):
-    currentTime = get_readable_time(time.time() - botStartTime)
+    currentTime = get_readable_time((time.time() - botStartTime))
     total, used, free = shutil.disk_usage('.')
     total = get_readable_file_size(total)
     used = get_readable_file_size(used)
@@ -31,15 +32,20 @@ def stats(update, context):
     cpuUsage = psutil.cpu_percent(interval=0.5)
     memory = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
-    stats = f'<b>Bot Uptime:</b> <code>{currentTime}</code>\n' \
-            f'<b>Total Disk Space:</b> <code>{total}</code>\n' \
-            f'<b>Used:</b> <code>{used}</code> ' \
-            f'<b>Free:</b> <code>{free}</code>\n\n' \
-            f'<b>Upload:</b> <code>{sent}</code>\n' \
-            f'<b>Download:</b> <code>{recv}</code>\n\n' \
-            f'<b>CPU:</b> <code>{cpuUsage}%</code> ' \
-            f'<b>RAM:</b> <code>{memory}%</code> ' \
-            f'<b>DISK:</b> <code>{disk}%</code>'
+    stats = f'<b>╭─────────「  ⭕️ BOT STATISTICS ⭕️  」</b>\n' \
+            f'<b>│</b>\n' \
+            f'<b>├  ⏰ Bot Uptime : {currentTime}</b>\n' \
+            f'<b>├  💾 Total Disk Space : {total}</b>\n' \
+            f'<b>├  📀 Total Used Space : {used}</b>\n' \
+            f'<b>├  💿 Total Free Space : {free}</b>\n' \
+            f'<b>├  🔼 Total Upload : {sent}</b>\n' \
+            f'<b>├  🔽 Total Download : {recv}</b>\n' \
+            f'<b>├  🖥️ CPU : {cpuUsage}%</b>\n' \
+            f'<b>├  🎮 RAM : {memory}%</b>\n' \
+            f'<b>├  💽 DISK : {disk}%</b>\n' \
+            f'<b>│</b>\n' \
+            f'<b>╰──「 🚸 Developed By Anant Goel 🚸 」</b>'
+    update.effective_message.reply_photo(IMAGE_URL, stats, parse_mode=ParseMode.HTML)
     sendMessage(stats, context.bot, update)
 
 
