@@ -405,26 +405,7 @@ try:
     if len(IMAGE_URL) == 0:
         IMAGE_URL = 'https://telegra.ph/file/6f9947af1f40e4701aad4.jpg'
 except KeyError:
-    IMAGE_URL = 'https://telegra.ph/file/6f9947af1f40e4701aad4.jpg'                
-try:
-    conn = psycopg2.connect(DB_URI)
-    cur = conn.cursor()
-    sql = "SELECT * from users;"
-    cur.execute(sql)
-    rows = cur.fetchall()  #returns a list ==> (uid, sudo)
-    for row in rows:
-        AUTHORIZED_CHATS.add(row[0])
-        if row[1]:
-            SUDO_USERS.add(row[0])
-except Error as e:
-    if 'relation "users" does not exist' in str(e):
-        mktable()
-    else:
-        LOGGER.error(e)
-        exit(1)
-finally:
-    cur.close()
-    conn.close()                    
+    IMAGE_URL = 'https://telegra.ph/file/6f9947af1f40e4701aad4.jpg'                                 
 
 updater = tg.Updater(token=BOT_TOKEN)
 bot = updater.bot
