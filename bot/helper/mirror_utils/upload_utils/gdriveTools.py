@@ -131,7 +131,7 @@ class GoogleDriveHelper:
                                      resumable=False)
         file_metadata = {
             'name': file_name,
-            'description': 'Uploaded using Slam Mirrorbot',
+            'description': 'Uploaded using AnantMirrorbot',
             'mimeType': mime_type,
         }
         if parent_id is not None:
@@ -807,9 +807,9 @@ class GoogleDriveHelper:
 
         for content in self.telegraph_content :
             self.path.append(Telegraph(access_token=telegraph_token).create_page(
-                                                    title = 'Slam Mirrorbot Search',
-                                                    author_name='Slam Mirrorbot',
-                                                    author_url='https://github.com/SlamDevs/slam-mirrorbot',
+                                                    title = 'Anant Mirrorbot Search',
+                                                    author_name='Anant Mirrorbot',
+                                                    author_url='https://github.com/Anantgoel0123456/Slammirrorbot',
                                                     html_content=content
                                                     )['path'])
 
