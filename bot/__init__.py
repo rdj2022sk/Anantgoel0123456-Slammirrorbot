@@ -171,7 +171,6 @@ try:
     DB_URI = getConfig('DATABASE_URL')
 
     
-LOGGER.info("Generating USER_SESSION_STRING")
 app = Client('mirrorbot', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, bot_token=BOT_TOKEN)
 
 # Generate Telegraph Token
