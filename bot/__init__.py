@@ -162,7 +162,7 @@ try:
 except KeyError:
     DB_URI = None
 if DB_URI is not None:
-    try:
+try:
         conn = psycopg2.connect(DB_URI)
         cur = conn.cursor()
         sql = "SELECT * from users;"
