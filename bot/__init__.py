@@ -44,6 +44,18 @@ if CONFIG_FILE_URL is not None:
     else:
         logging.error(res.status_code)
 
+def mktable():
+    try:
+        conn = psycopg2.connect(DB_URI)
+        cur = conn.cursor()
+        sql = "CREATE TABLE users (uid bigint, sudo boolean DEFAULT FALSE);"
+        cur.execute(sql)
+        conn.commit()
+        LOGGER.info("Table Created!")
+    except Error as e:
+        LOGGER.error(e)
+        exit(1)        
+
 load_dotenv('config.env')
 
 SERVER_PORT = os.environ.get('SERVER_PORT', None)
